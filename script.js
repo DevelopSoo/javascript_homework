@@ -1,3 +1,15 @@
+// 4강 문제8)
+localStorage.setItem("user", JSON.stringify(user));
+
+const userData = JSON.parse(localStorage.getItem("user"));
+console.log(userData);
+
+userData.나이 = 30;
+console.log(userData);
+
+localStorage.removeItem("user");
+console.log(localStorage.getItem("user"));
+
 // 문제1)
 fetch("https://jsonplaceholder.typicode.com/posts")
   .then((response) => response.json())
