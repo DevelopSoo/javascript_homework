@@ -1,12 +1,30 @@
 // 4강 문제8)
+const user = {
+  이름: "병수",
+  나이: 20,
+  주소: "시골",
+};
+
+// 8-1)
 localStorage.setItem("user", JSON.stringify(user));
 
+// 8-2)
 const userData = JSON.parse(localStorage.getItem("user"));
 console.log(userData);
 
+// 8-3)
 userData.나이 = 30;
-console.log(userData);
+localStorage.setItem("user", JSON.stringify(userData));
+// 혹은
+localStorage.setItem(
+  "user",
+  JSON.stringify({
+    ...userData,
+    나이: 30,
+  })
+);
 
+// 8-4)
 localStorage.removeItem("user");
 console.log(localStorage.getItem("user"));
 
@@ -14,25 +32,3 @@ console.log(localStorage.getItem("user"));
 fetch("https://jsonplaceholder.typicode.com/posts")
   .then((response) => response.json())
   .then((json) => console.log(json));
-
-// 문제2)
-async function fetchPosts() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const json = await response.json();
-  console.log(json);
-}
-
-fetchPosts();
-
-// 문제3)
-async function tryCatchFetchPosts() {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const json = await response.json();
-    console.log(json);
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-  }
-}
-
-tryCatchFetchPosts();
